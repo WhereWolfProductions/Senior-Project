@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: b5f5e9f767d4daa4c94a5ad4a495ad69
+timeCreated: 1511123359
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 300
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: PanicStricken
+  fontNames:
+  - PanicStricken
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
