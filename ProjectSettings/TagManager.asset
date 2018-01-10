@@ -8,6 +8,8 @@ TagManager:
   - Music Manager
   - Effect Manager
   - fade
+  - Computer
+  - PC Canvas
   layers:
   - Default
   - TransparentFX

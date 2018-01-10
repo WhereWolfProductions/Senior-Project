@@ -28,7 +28,7 @@ public class fadeScript : MonoBehaviour {
         Canvas canvas = gameObject.GetComponent<Canvas>();
         Image canvasImage = canvas.transform.Find("Image").GetComponent<Image>();
         canvas.GetComponent<Canvas>().worldCamera = Camera.main;
-        canvas.GetComponent<Canvas>().planeDistance = 1;
+        canvas.GetComponent<Canvas>().planeDistance = 0.4f;
         canvasImage.color = new Color(0, 0, 0, 0);
 
 
@@ -53,16 +53,23 @@ public class fadeScript : MonoBehaviour {
         canvasImage.color = new Color(0, 0, 0, 1);
 
 
-        while (canvasImage.color.a > 0)
+        while (canvasImage != null && canvasImage.color.a > 0)
         {
             Color fadedColor = new Color(canvasImage.color.r, canvasImage.color.g, canvasImage.color.b, canvasImage.color.a - fadeInSpeed);
             canvasImage.color = fadedColor;
             yield return new WaitForSeconds(0.015f);
         }
 
-        canvasImage.color = new Color(0, 0, 0, 0);
+        if (canvasImage != null)
+        {
+            canvasImage.color = new Color(0, 0, 0, 0);
+        }
 
+    }
 
+    public void stopFade()
+    {
+        StopAllCoroutines();
     }
 
 }

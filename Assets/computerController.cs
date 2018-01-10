@@ -6,7 +6,9 @@ using UnityEngine;
 public class computerController : MonoBehaviour {
 
 
-    bool clickable = false;
+    public bool clickable = false;
+    public bool open = false;
+
 
     float floatSpeed = .6f;
     Vector3 floatDirection = new Vector3(0, .15f, 0);
@@ -19,7 +21,6 @@ public class computerController : MonoBehaviour {
 	void Start () {
 
         clickable = false;
-        StartCoroutine(preventEarlyClick());
         spinCubeRoutine = StartCoroutine(spinCube());
         floatCubeRoutine = StartCoroutine(floatCube());
         humSound = StartCoroutine(humEffect());
@@ -28,16 +29,10 @@ public class computerController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 
 
-    IEnumerator preventEarlyClick()
-    {
-        yield return new WaitUntil(() => Camera.main.GetComponent<cameraScript>().canMove == true);
-        clickable = true;
-        
-    }
 
 
     IEnumerator spinCube()
@@ -95,6 +90,7 @@ public class computerController : MonoBehaviour {
 
 
             clickable = false;
+            open = true;
         }
 
 
@@ -140,6 +136,8 @@ public class computerController : MonoBehaviour {
     //Expands the cube so that a UI screen can be placed over it.
     IEnumerator expandScreen()
     {
+        StartCoroutine(fadeEmission(transform.Find("Cube").GetComponent<Renderer>().material));
+ 
         Vector3 targetSize = new Vector3(6, 10, 8);
 
         while (transform.localScale != targetSize)
@@ -158,10 +156,8 @@ public class computerController : MonoBehaviour {
             yield return null;
         }
 
-        StartCoroutine(fadeEmission(transform.Find("Cube").GetComponent<Renderer>().material));
-        yield return new WaitUntil(() => transform.Find("Cube").GetComponent<Renderer>().material.GetColor("_EmissionColor").a > 0.3f);
+        yield return new WaitUntil(() => transform.Find("Cube").GetComponent<Renderer>().material.GetColor("_EmissionColor").a < 0.299f);
         spawnCanvases();
-        
     }
 
 
@@ -239,7 +235,6 @@ public class computerController : MonoBehaviour {
     void loadImages()
     {
         imageList = Resources.LoadAll<Sprite>("Images");
-        Debug.Log(imageList[0]);
     }
 
     //Searches imageList for an image name and returns it if found
@@ -258,13 +253,38 @@ public class computerController : MonoBehaviour {
 
 
     //Adds an image to a canvas, returns the image component for customization if needed.
-    Image addImage(GameObject targetCanvas, string imageName)
+    public Image addImage(GameObject targetCanvas, string imageName)
     {
-        Image spawnedImage = targetCanvas.transform.Find("Panel").Find("Image").gameObject.AddComponent<Image>();
-        spawnedImage.sprite = findImage(imageName);
-        return spawnedImage;
+        if (targetCanvas.transform.Find("Panel").Find("Image").GetComponent<Image>() != null)
+        {
+            targetCanvas.transform.Find("Panel").Find("Image").GetComponent<Image>().sprite = findImage(imageName);
+            targetCanvas.transform.Find("Panel").Find("Image").GetComponent<Image>().color = Color.white;
+            return targetCanvas.transform.Find("Panel").Find("Image").GetComponent<Image>();
+        }
+
+        else
+        {
+            Image spawnedImage = targetCanvas.transform.Find("Panel").Find("Image").gameObject.AddComponent<Image>();
+            spawnedImage.sprite = findImage(imageName);
+            targetCanvas.transform.Find("Panel").Find("Image").GetComponent<Image>().color = Color.white;
+            return spawnedImage;
+        }
     }
 
+
+    public void removeImage(GameObject targetCanvas)
+    {
+        Image targetComponent = targetCanvas.transform.Find("Panel").Find("Image").GetComponent<Image>();
+
+        if (targetComponent.sprite != null)
+        {
+            targetComponent.sprite = null;
+            Color currentColor = targetCanvas.transform.Find("Panel").Find("Image").GetComponent<Image>().color;
+            Color invisableColor = new Color(currentColor.r, currentColor.g, currentColor.b, 0);
+            targetCanvas.transform.Find("Panel").Find("Image").GetComponent<Image>().color = invisableColor;
+        }
+
+    }
 
 }
 

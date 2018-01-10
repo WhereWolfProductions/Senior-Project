@@ -56,7 +56,7 @@ GameObject:
   - component: {fileID: 65439601211895400}
   m_Layer: 0
   m_Name: Computer
-  m_TagString: Untagged
+  m_TagString: Computer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,3 +200,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5289550c30a541418bed0a7db906f35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickable: 0
+  open: 0

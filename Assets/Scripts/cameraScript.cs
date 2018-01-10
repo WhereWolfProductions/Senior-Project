@@ -12,14 +12,14 @@ public class cameraScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-        Cursor.lockState = CursorLockMode.Locked;
-
+        Cursor.SetCursor(Resources.Load("Images/cursor") as Texture2D, Vector2.zero, CursorMode.Auto);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         if (canMove == true) { cameraMove(); }
+
 	}
 
 

@@ -26,7 +26,7 @@ public class effectPlayer : MonoBehaviour {
 
     void loadClips()
     {
-        clips = Resources.LoadAll<AudioClip>("Ai Dialogue/Lvl 1");
+        clips = Resources.LoadAll<AudioClip>("Ai Dialogue/Lvl 1/Intro Dialogue");
         SFXList = Resources.LoadAll<AudioClip>("SFX");
 
     }
@@ -62,14 +62,23 @@ public class effectPlayer : MonoBehaviour {
 
 
 
-    //Method used to play any dialogue Clip
-    public AudioSource sayClip(string clipName)
+    //Method used to play any dialogue Clip, at a certain volume that cant exceed the set effect volume.
+    public AudioSource sayClip(string clipName, float volume)
     {
-        foreach(AudioClip clip in clips)
+
+        AudioSource used = findFreeSource();
+
+        foreach (AudioClip clip in clips)
         {
             if(clip.name == clipName)
             {
-                AudioSource used = findFreeSource();
+
+                if (volume <= effectVol)
+                {
+                    used.volume = volume;
+                }
+                else { used.volume = effectVol; }
+
                 used.clip = clip;
                 used.Play();
                 return used;
