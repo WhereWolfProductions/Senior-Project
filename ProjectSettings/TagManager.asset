@@ -10,6 +10,7 @@ TagManager:
   - fade
   - Computer
   - PC Canvas
+  - Panels
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - No Light
+  - Dynamic Light
   - 
   - 
   - 
