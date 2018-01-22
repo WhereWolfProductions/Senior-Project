@@ -39,8 +39,8 @@ public class gameController : MonoBehaviour {
     public void pressedStart()
     {
 
-        GameObject temp = Instantiate(Resources.Load("FadeScreen") as GameObject, Camera.main.transform);
-        ScriptableObject.CreateInstance<level1>();
+        //GameObject temp = Instantiate(Resources.Load("FadeScreen") as GameObject, Camera.main.transform);
+        //ScriptableObject.CreateInstance<level1>();
 
 
     }

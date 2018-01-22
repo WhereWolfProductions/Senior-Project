@@ -13,13 +13,16 @@ public class cameraScript : MonoBehaviour {
 	void Start () {
 
         Cursor.SetCursor(Resources.Load("Images/cursor") as Texture2D, Vector2.zero, CursorMode.Auto);
+        
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
         if (canMove == true) { cameraMove(); }
+        Cursor.lockState = CursorLockMode.Locked;
 
+        transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, 0.1880001f, GameObject.FindWithTag("Player").transform.position.z);
 	}
 
 
@@ -40,6 +43,8 @@ public class cameraScript : MonoBehaviour {
 
         Camera.main.transform.localEulerAngles = new Vector3(-yRotate, Camera.main.transform.localEulerAngles.y,
             Camera.main.transform.localEulerAngles.z);
+
+
     }
 
 }

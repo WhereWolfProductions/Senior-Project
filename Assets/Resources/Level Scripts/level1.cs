@@ -12,7 +12,7 @@ public class level1 : ScriptableObject {
 	// Use this for initialization
 	private void Awake () {
         
-        gameController.gameControllerManager.runCoroutine(introduction);
+        //gameController.gameControllerManager.runCoroutine(introduction);
         mainCamera = Camera.main.gameObject;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -25,12 +25,12 @@ public class level1 : ScriptableObject {
     }
 
 
-
+    /*
     //Controls the changing of scene, fading in and out, download bar, audio played during download
     IEnumerator introduction()
     {
 
-
+        
         musicManager.musicManagerData.stopMusicRoutine(musicManager.musicManagerData.introSong);
         musicManager.musicManagerData.fadeMusicFromScriptObj(musicManager.musicManagerData.audioSource, 2);
         gameController.gameControllerManager.runCoroutine(getFade().GetComponent<fadeScript>().fadeOut);
@@ -82,7 +82,7 @@ public class level1 : ScriptableObject {
         gameController.gameControllerManager.runCoroutine(historyLesson);
         
     }
-
+    */
     IEnumerator historyLesson()
     {
         GameObject computer;
