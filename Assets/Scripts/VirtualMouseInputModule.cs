@@ -4,43 +4,11 @@ using UnityEngine.Serialization;
 namespace UnityEngine.EventSystems
 {
     [AddComponentMenu("Event/Virtual Cursor Input Module")]
-    public class StandaloneInputModule : PointerInputModule
+    public class VirtualCursorInputModule : PointerInputModule
     {
+        
+        Transform virtualMouse;
 
-        /*
-        //@@@@@@@@@@@@@
-        //Override method that would use mouse position but now uses virtaul cursor position.
-        protected override PointerEventData GetTouchPointerEventData(Touch input, out bool pressed, out bool released)
-        {
-            PointerEventData pointerData;
-            var created = GetPointerData(input.fingerId, out pointerData, true);
-
-            pointerData.Reset();
-
-            pressed = created || (input.phase == TouchPhase.Began);
-            released = (input.phase == TouchPhase.Canceled) || (input.phase == TouchPhase.Ended);
-
-            if (created)
-                pointerData.position = input.position;
-
-            if (pressed)
-                pointerData.delta = Vector2.zero;
-            else
-                pointerData.delta = input.position - pointerData.position;
-
-            pointerData.position = input.position;
-
-            pointerData.button = PointerEventData.InputButton.Left;
-
-            eventSystem.RaycastAll(pointerData, m_RaycastResultCache);
-
-            var raycast = FindFirstRaycast(m_RaycastResultCache);
-            pointerData.pointerCurrentRaycast = raycast;
-            m_RaycastResultCache.Clear();
-            return pointerData;
-        }
-        */
-        //@@@@@@@@@@@@@@@@
 
         private float m_PrevActionTime;
         Vector2 m_LastMoveVector;
@@ -154,7 +122,7 @@ namespace UnityEngine.EventSystems
         public override void UpdateModule()
         {
             m_LastMousePosition = m_MousePosition;
-            m_MousePosition = Input.mousePosition;
+            m_MousePosition = virtualMouse.position.;
         }
 
         public override bool IsModuleSupported()
@@ -183,8 +151,8 @@ namespace UnityEngine.EventSystems
         public override void ActivateModule()
         {
             base.ActivateModule();
-            m_MousePosition = Input.mousePosition;
-            m_LastMousePosition = Input.mousePosition;
+            m_MousePosition = virtualMouse.position;
+            m_LastMousePosition = virtualMouse.position;
 
             var toSelect = eventSystem.currentSelectedGameObject;
             if (toSelect == null)
