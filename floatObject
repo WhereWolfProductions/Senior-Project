@@ -1,0 +1,33 @@
+using System.Collections;
+using UnityEngine;
+
+public class floatObject : MonoBehaviour {
+
+  public float amplitude;
+  public float speed;  //This is the frequency, the frequency at which the obj will ride the curve of a sin wave.
+  Vector3 floatPosition = new Vector3();
+  void Start{
+    
+    //If values not set, sets them to zero to avoid errors.
+    if(amplitude == null || speed == null)
+    {
+      amplitude = 0;
+      speed = 0;
+    }
+
+  }
+  
+  void Update(){
+  
+    
+    
+  }
+  
+  void floatObj()
+  {
+    floatPosition = transform.position;
+    floatPosition.y += Mathf.Sin(Mathf.PI * Time.fixedDeltaTime * speed) * amplitude;
+    transform.position = floatPosition;
+  }
+
+}
