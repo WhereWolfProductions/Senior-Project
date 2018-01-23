@@ -34,8 +34,15 @@ public class cameraScript : MonoBehaviour {
     {
         float horAim = Input.GetAxis("Mouse X");
 
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + (sensitivity * Time.deltaTime) * (horAim),
+        Vector3 newRotation = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + (sensitivity * Time.deltaTime) * (horAim),
             transform.localEulerAngles.z);
+        newRotation.y = 0;
+
+        //Rotates player on Y-axis according to mouse camera rotation
+        Vector3 playerRot = new Vector3(0, transform.parent.localEulerAngles.y + (sensitivity * Time.deltaTime) * (horAim), 0);
+        transform.parent.localEulerAngles = playerRot;
+
+        transform.localEulerAngles = newRotation;
 
         yRotate += Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
         yRotate = Mathf.Clamp(yRotate, -90, 90);
@@ -43,7 +50,6 @@ public class cameraScript : MonoBehaviour {
 
         Camera.main.transform.localEulerAngles = new Vector3(-yRotate, Camera.main.transform.localEulerAngles.y,
             Camera.main.transform.localEulerAngles.z);
-
 
     }
 

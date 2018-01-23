@@ -15,7 +15,6 @@ public class playerController : MonoBehaviour {
 
         playerRB = GetComponent<Rigidbody>();
         moveSpeed = 10;
-        cam = transform.Find("Main Camera");
 	}
 	
 	// Update is called once per frame
@@ -23,15 +22,9 @@ public class playerController : MonoBehaviour {
 
 
 
-
     }
 
 	
-        void setRotation()
-	{
-		//Possible way to make two objects have same y rotation.
-		transfrom.localEulerAngles = new Vectro3(transform.localEulerAngles.x, transform.localEulerAngles.y  - ( (transform.localEulerAngles.y - transform.localEulerAngles.y) + cam.localEulerAngles.y), transform.lcoalEulerAngles.z)
-	}
 
     private void FixedUpdate()
     {
