@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorControls : MonoBehaviour {
 		
 	bool locked;  //The state the door is in
-	bool open;
+	public bool open;
 	
 	Animator doorAnimController;
 	
@@ -28,8 +28,13 @@ public class DoorControls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+		/*
+		if(open == true)
+		{
+			autoClose();
+		}
 		
-		
+		*/
 	}
 	
 	
@@ -65,4 +70,39 @@ public class DoorControls : MonoBehaviour {
 			doorAnimController.SetBool("opened", false);
 		}
 	}
+	
+	
+	//Sets what picture the button should show, locked or unlocked.
+	void setButton()
+	{
+		if(locked == true)
+		{
+			
+		}
+		else if (locked == false)
+		{
+			
+		}
+	}
+	
+	//Developer functions, non-player controlled.
+	void unlockDoor()
+	{
+		locked = false;
+		setButtons();
+	}
+	
+	void lockDoor()
+	{
+		locked = true;
+		setButtons();
+	}
+	
+	void openDoor(GameObject target)
+	{
+		target.GetComponent<Animator>().SetBool("opened", true);
+		target.GetComponent<DoorControls>().open = true;
+	}
+	
+	
 }
