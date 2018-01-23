@@ -20,7 +20,10 @@ public class playerController : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+	float horInput = Input.GetAxis("Horizontal");
+	float vertInput = Input.GetAxis("Vertical");
+		
+	moveDirection = new Vector3(transform.position.x + (horInput * moveSpeed), transform.position.y, transform.position.z + (vertInput * moveSpeed));
 
     }
 
@@ -28,7 +31,8 @@ public class playerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-
+	
+	    playerRB.AddForce(moveDirection);
 
     }
 }
