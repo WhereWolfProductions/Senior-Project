@@ -36,7 +36,8 @@ public class playerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-	
+	//Try addForce(dir, ForceMode.Impulse)
+	// Also try ForceMode.Veloicty
 	    playerRB.AddForce(moveDirection);
 
     }
