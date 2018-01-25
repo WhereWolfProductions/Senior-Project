@@ -22,8 +22,12 @@ public class playerController : MonoBehaviour {
 
 	float horInput = Input.GetAxis("Horizontal");
 	float vertInput = Input.GetAxis("Vertical");
-		
-	moveDirection = new Vector3(transform.position.x + (horInput * moveSpeed), transform.position.y, transform.position.z + (vertInput * moveSpeed));
+	
+	if(horInput != 0 && vertInput != 0)
+	{
+		//Might try not including transform.position, may not need the if.
+		moveDirection = new Vector3(transform.position.x + (horInput * moveSpeed), transform.position.y, transform.position.z + (vertInput * moveSpeed));
+	}
 
     }
 
