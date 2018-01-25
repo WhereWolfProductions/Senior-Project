@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour {
 	if(horInput != 0 && vertInput != 0)
 	{
 		//Might try not including transform.position, may not need the if.
+		//Also try remove transform.position as it may casue unexpected bahavior.
 		moveDirection = new Vector3(transform.position.x + (horInput * moveSpeed), transform.position.y, transform.position.z + (vertInput * moveSpeed));
 	}
 
