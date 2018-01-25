@@ -17,7 +17,7 @@ namespace UnityEngine.EventSystems
         private Vector2 m_LastMousePosition;
         private Vector2 m_MousePosition;
 
-        protected StandaloneInputModule()
+        protected VirtualCursorInputModule()
         {}
 
         [Obsolete("Mode is no longer needed on input module as it handles both mouse and keyboard simultaneously.", false)]
@@ -122,7 +122,7 @@ namespace UnityEngine.EventSystems
         public override void UpdateModule()
         {
             m_LastMousePosition = m_MousePosition;
-            m_MousePosition = virtualMouse.position.;
+            m_MousePosition = virtualMouse.position;
         }
 
         public override bool IsModuleSupported()

@@ -49,7 +49,7 @@ public class DoorControls : MonoBehaviour {
 		//unlocked(green) and open
 		else if(locked == false && open == true)
 		{
-			doorAnimController.SetBool("opened", false)
+            doorAnimController.SetBool("opened", false);
 		}
 		//locked(red) in any state
 		else if (locked == true)
@@ -73,7 +73,7 @@ public class DoorControls : MonoBehaviour {
 	
 	
 	//Sets what picture the button should show, locked or unlocked.
-	void setButton()
+	void setButtons()
 	{
 		if(locked == true)
 		{
