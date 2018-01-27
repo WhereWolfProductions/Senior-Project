@@ -39,6 +39,9 @@ public class gameController : MonoBehaviour {
     public void pressedStart()
     {
 
+        changeScene("Office Better");
+        Cursor.lockState = CursorLockMode.Locked;
+
         //GameObject temp = Instantiate(Resources.Load("FadeScreen") as GameObject, Camera.main.transform);
         //ScriptableObject.CreateInstance<level1>();
 

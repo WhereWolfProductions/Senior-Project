@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class playerController : MonoBehaviour {
 
-    Vector3 moveDirection;
     Rigidbody playerRB;
     Transform cam;
 
@@ -14,21 +13,15 @@ public class playerController : MonoBehaviour {
 	void Start () {
 
         playerRB = GetComponent<Rigidbody>();
-        moveSpeed = 10;
+        moveSpeed = 7;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-	float horInput = Input.GetAxis("Horizontal");
-	float vertInput = Input.GetAxis("Vertical");
+
 	
-	if(horInput != 0 && vertInput != 0)
-	{
-		//Might try not including transform.position, may not need the if.
-		//Also try remove transform.position as it may casue unexpected bahavior.
-		moveDirection = new Vector3(transform.position.x + (horInput * moveSpeed), transform.position.y, transform.position.z + (vertInput * moveSpeed));
-	}
+
 
     }
 
@@ -36,9 +29,21 @@ public class playerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-	//Try addForce(dir, ForceMode.Impulse)
-	// Also try ForceMode.Veloicty
-	    playerRB.AddForce(moveDirection);
+        //Try addForce(dir, ForceMode.Impulse)
+        // Also try ForceMode.Veloicty
+        float horInput = Input.GetAxisRaw("Horizontal");
+        float vertInput = Input.GetAxisRaw("Vertical");
+
+        
+
+        Vector3 vertDir = (transform.forward * vertInput);
+        Vector3 horDir = (transform.right * horInput);
+
+        Vector3 totalDir = (vertDir + horDir);
+
+        playerRB.MovePosition(transform.position + (totalDir * Time.deltaTime * moveSpeed));
+
+
 
     }
 }

@@ -1,0 +1,80 @@
+Initialize engine version: 5.6.3p2 (b3d7a6428558)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 980 (ID=0x13c0)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+    Driver:   23.21.13.8813
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.057 seconds
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3360x1080 at -1440,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.130469 ms
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: efc4 -> priority: 1 
+  Thread -> id: d17c -> priority: 1 
+  Thread -> id: da90 -> priority: 1 
+  Thread -> id: eeac -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.927750 ms
+
+Unloading 36 unused Assets to reduce memory usage. Loaded Objects now: 1228.
+Total: 0.694280 ms (FindLiveObjects: 0.066107 ms CreateObjectMapping: 0.032299 ms MarkObjects: 0.471205 ms  DeleteObjects: 0.124064 ms)
+
+Initialize engine version: 5.6.3p2 (b3d7a6428558)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 980 (ID=0x13c0)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+    Driver:   23.21.13.8813
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+- Completed reload, in  0.033 seconds
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Derek\Documents\Senior_Project\Senior-Project\demo_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 3360x1080 at -1440,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.011838 ms
+Setting up 4 worker threads for Enlighten.
+  Thread -> id: c4e0 -> priority: 1 
+  Thread -> id: f98c -> priority: 1 
+  Thread -> id: f8c8 -> priority: 1 
+  Thread -> id: 9c3c -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 3.043061 ms
+
+Unloading 36 unused Assets to reduce memory usage. Loaded Objects now: 1228.
+Total: 0.542444 ms (FindLiveObjects: 0.063390 ms CreateObjectMapping: 0.023243 ms MarkObjects: 0.356196 ms  DeleteObjects: 0.098708 ms)
+
