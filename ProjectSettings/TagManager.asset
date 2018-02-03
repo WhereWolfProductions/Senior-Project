@@ -11,6 +11,7 @@ TagManager:
   - Computer
   - PC Canvas
   - Panels
+  - slope
   layers:
   - Default
   - TransparentFX

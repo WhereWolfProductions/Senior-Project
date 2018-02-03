@@ -4,55 +4,60 @@ using UnityEngine;
 
 public class DoorControls : MonoBehaviour {
 		
-	bool locked;  //The state the door is in
-	public bool open;
+	public bool unlocked;  //The state the door is in
+    public GameObject door;
 	
 	Animator doorAnimController;
 	
-	Vector3 playerPos;
+	Transform playerPos;
 	
 	// Use this for initialization
 	void Start () {
 		
 		//Assures that if I forget to set door state, it will be defaultly unopenable.
-		if(locked == null)
+		if(unlocked == null)
 		{
-			locked = false;
+			unlocked = false;
 		}
 		
-		doorAnimController = gameObject.GetComponent<Animator>();
-		playerPos = GameObject.FindWithTag("Player").transform.position;
-		
+		doorAnimController = door.GetComponent<Animator>();
+		playerPos = GameObject.FindWithTag("Player").transform;
+        canvasReflectState();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
-		/*
-		if(open == true)
-		{
-			autoClose();
-		}
-		
-		*/
+
+
+    
 	}
-	
-	
-	void clickedButton()
+
+    private void OnMouseDown()
+    {
+        if (inRange() == true)
+        {
+            clickedButton();
+            canvasReflectState();
+        }
+    }
+
+
+
+    void clickedButton()
 	{
 		
 		//If unlocked(green) and closed...
-		if(locked == false && open == false)
+		if(unlocked == true && doorAnimController.GetBool("opened") == false)
 		{
 			doorAnimController.SetBool("opened", true);
 		}
 		//unlocked(green) and open
-		else if(locked == false && open == true)
+		else if(unlocked == true && doorAnimController.GetBool("opened") == true)
 		{
             doorAnimController.SetBool("opened", false);
 		}
 		//locked(red) in any state
-		else if (locked == true)
+		else if (unlocked == false)
 		{
 			//play locked anim.
 		}
@@ -65,7 +70,7 @@ public class DoorControls : MonoBehaviour {
 	void autoClose()
 	{
 		//If distance between door and player gets big enough, the door will set itself to clsoed, thus closing.
-		if(Vector3.Distance(transform.position, playerPos) > 4)
+		if(Vector3.Distance(transform.position, playerPos.position) > 4)
 		{
 			doorAnimController.SetBool("opened", false);
 		}
@@ -75,33 +80,65 @@ public class DoorControls : MonoBehaviour {
 	//Sets what picture the button should show, locked or unlocked.
 	void setButtons()
 	{
-		if(locked == true)
+		if(unlocked == true)
 		{
 			
 		}
-		else if (locked == false)
+		else if (unlocked == false)
 		{
 			
 		}
 	}
+
+
+    //prevents player from pressing buttons from an infinate distance
+    bool inRange()
+    {
+        Debug.Log(Vector3.Distance(transform.position, playerPos.position));
+        if (Vector3.Distance(transform.position, playerPos.position) > 3)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
+    }
+
+    
+    //The screen of the button will say locked if door is locked, unlocked if unlocked.
+    void canvasReflectState()
+    {
+        if(unlocked == true)
+        {
+            transform.Find("Locked Canvas").gameObject.SetActive(false);
+            transform.Find("Unlocked Canvas").gameObject.SetActive(true);
+        }
+        else if(unlocked == false)
+        {
+            transform.Find("Locked Canvas").gameObject.SetActive(true);
+            transform.Find("Unlocked Canvas").gameObject.SetActive(false);
+        }
+    }
+
+
 	
 	//Developer functions, non-player controlled.
 	void unlockDoor()
 	{
-		locked = false;
+		unlocked = true;
 		setButtons();
 	}
 	
 	void lockDoor()
 	{
-		locked = true;
+		unlocked = false;
 		setButtons();
 	}
 	
 	void openDoor(GameObject target)
 	{
 		target.GetComponent<Animator>().SetBool("opened", true);
-		target.GetComponent<DoorControls>().open = true;
 	}
 	
 	

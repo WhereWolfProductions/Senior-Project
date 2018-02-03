@@ -5,22 +5,26 @@ using UnityEngine;
 public class playerController : MonoBehaviour {
 
     Rigidbody playerRB;
+    CapsuleCollider playerCollider;
     Transform cam;
 
-    float moveSpeed;
+    public float moveSpeed;
+    float slopeClossnes;     //The distance
+
+    bool grounded;
 
 	// Use this for initialization
 	void Start () {
 
         playerRB = GetComponent<Rigidbody>();
-        moveSpeed = 7;
-	}
+        slopeClossnes = 7;
+        playerCollider = playerRB.gameObject.GetComponent<Collider>() as CapsuleCollider;
+    }
 	
 	// Update is called once per frame
 	void Update () {
 
 
-	
 
 
     }
@@ -29,21 +33,121 @@ public class playerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        //Try addForce(dir, ForceMode.Impulse)
-        // Also try ForceMode.Veloicty
+
+        playerMove();
+        stickToSlopes();
+        checkGround();
+    }
+
+
+    void playerMove()
+    {
         float horInput = Input.GetAxisRaw("Horizontal");
         float vertInput = Input.GetAxisRaw("Vertical");
 
-        
 
-        Vector3 vertDir = (transform.forward * vertInput);
-        Vector3 horDir = (transform.right * horInput);
+        preventSliding();
 
-        Vector3 totalDir = (vertDir + horDir);
+        if (horInput != 0 || vertInput != 0)
+        {
+            Vector3 vertDir = (transform.forward * vertInput);
+            Vector3 horDir = (transform.right * horInput);
 
-        playerRB.MovePosition(transform.position + (totalDir * Time.deltaTime * moveSpeed));
+            Vector3 totalDir = (vertDir + horDir);
+            totalDir = new Vector3(totalDir.x, playerRB.velocity.y, totalDir.z);
+            totalDir = totalDir * moveSpeed * Time.deltaTime;
+            totalDir.y = playerRB.velocity.y;
 
-
+            playerRB.velocity = totalDir;
+        }
 
     }
+
+
+    void preventSliding()
+    {
+
+        if(Input.GetAxisRaw("Horizontal") == 0)
+        {
+            Vector3 localVel = transform.InverseTransformDirection(playerRB.velocity);
+            localVel.x = 0;
+            playerRB.velocity = transform.TransformDirection(localVel);
+        }
+        if(Input.GetAxisRaw("Vertical") == 0)
+        {
+            Vector3 localVel = transform.InverseTransformDirection(playerRB.velocity);
+            localVel.z = 0;
+            playerRB.velocity = transform.TransformDirection(localVel);
+        }
+
+    }
+
+    
+
+    void stickToSlopes()
+    {
+        RaycastHit hitInfo = new RaycastHit();
+        Debug.Log(hitInfo.collider);
+
+        Vector3 adjustedPos = new Vector3(transform.position.x, transform.position.y - playerCollider.height /2, transform.position.z);
+        playerRB.useGravity = true;
+        //If ray hits something...
+        if (Physics.Raycast(new Ray(adjustedPos, Vector3.down), out hitInfo, slopeClossnes))
+        {
+            if(hitInfo.collider.tag == "slope")
+            {
+                Debug.Log("hit");
+                playerRB.position = new Vector3(playerRB.position.x, (hitInfo.point.y + ((playerCollider.height) / 2) + 0.1f), playerRB.position.z);
+                playerRB.useGravity = false;
+
+                //Prevents hopping behavior while standing still on slopes.
+                if(checkMovement() == false)
+                {
+                    playerRB.constraints = RigidbodyConstraints.FreezePositionY;
+                }
+                else
+                {
+                    playerRB.constraints = RigidbodyConstraints.None;
+                    playerRB.constraints = RigidbodyConstraints.FreezeRotation;
+                }
+            }
+            else { playerRB.useGravity = true; }
+        }
+        else
+        {
+            playerRB.useGravity = true;
+        }
+        playerRB.useGravity = true;
+    }
+
+
+    //Rays castes downward looking for a collider, if one is found, you are grounded, if not, grounded is false.
+    void checkGround()
+    {
+        float rayRange = 0.5f;
+        RaycastHit hitInfo = new RaycastHit();
+        Vector3 rayPos = new Vector3(transform.position.x, transform.position.y - playerCollider.height / 2, transform.position.z);
+
+        //If ray hits collider...
+        if (Physics.Raycast(new Ray(rayPos, Vector3.down), out hitInfo, rayRange))
+        {
+            grounded = true;
+        }
+        else { grounded = false; }
+
+    }
+
+
+    //Returns true if player is pressing movement controls.
+    bool checkMovement()
+    {
+        if(Input.GetAxisRaw("Horizontal") == 0 && Input.GetAxisRaw("Vertical") == 0)
+        {
+            return false;
+        }
+        else { return true; }
+    }
+
+
+
 }
