@@ -71,5 +71,18 @@ public class fadeScript : MonoBehaviour {
     {
         StopAllCoroutines();
     }
+	
+    
+    //Gives the current alpha of the fade screen.
+    public float getFade()
+    {
+	    return canvas.transform.Find("Image").GetComponent<Image>().color.a;
+    }
 
+	
+	
+	
+	
+	
+	
 }
