@@ -130,10 +130,25 @@ public class playerController : MonoBehaviour {
 	Vector3 moveDir = (transform.position + playerRB.velocity)
 	Vector3 nextPos = new Vector3 (transform.position) * playerRB.velocity * Time.deltaTime;
 	    
-	//If the players position has not changed in the direction they intend to travel, set that direction velocity to 0;
+	//If the players position has not changed in the direction they intend to travel
 	if(transform.position != nextPos)
 	{
 		Debug.Log("fix velocity");
+		/*
+		
+		//set hor velocity to 0 or .....
+		
+		@@@@@@@@@@
+		
+		//Adjust y velocity (gravity) to make the player fall, y overpowers total of hor velocity by amount of gravity.
+		
+		//New y velocity that adjusts gravity to overtake left/right velocity.
+		float newYVelo = new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).magnitude - Physics.gravity;
+		
+		
+		playerRB.velocity = new Vector3(playerRB.velocity.x, newYVelo, playerRB.velocity.z)
+		
+		*/
 	}
 	    
     }
