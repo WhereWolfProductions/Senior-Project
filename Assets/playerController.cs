@@ -133,7 +133,7 @@ public class playerController : MonoBehaviour {
 	//If the players position has not changed in the direction they intend to travel
 	if(transform.position != nextPos)
 	{
-		Debug.Log("fix velocity");
+		Debug.Log("Stuck on wall");
 		/*
 		
 		//set hor velocity to 0 or .....
@@ -150,6 +150,7 @@ public class playerController : MonoBehaviour {
 		
 		*/
 	}
+	else{  Debug.Log("Free"); }
 	    
     }
 	
