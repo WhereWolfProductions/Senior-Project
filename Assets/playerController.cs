@@ -120,6 +120,28 @@ public class playerController : MonoBehaviour {
         playerRB.useGravity = true;
     }
 
+	
+	
+    void preventStickWalls()
+    {
+	Transform firstPos = transform.position;
+	
+	//Direction the player is tying to move via input controls
+	Vector3 moveDir = (transform.position + playerRB.velocity)
+	Vector3 nextPos = new Vector3 (transform.position) * playerRB.velocity * Time.deltaTime;
+	    
+	//If the players position has not changed in the direction they intend to travel, set that direction velocity to 0;
+	if(transform.position != nextPos)
+	{
+		Debug.Log("fix velocity");
+	}
+	    
+    }
+	
+	
+	
+	
+	
 
     //Rays castes downward looking for a collider, if one is found, you are grounded, if not, grounded is false.
     void checkGround()
