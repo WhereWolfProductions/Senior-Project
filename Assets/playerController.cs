@@ -9,6 +9,7 @@ public class playerController : MonoBehaviour {
     Transform cam;
 
     public float moveSpeed;
+    float jumpPower = 15;
     float slopeClossnes;     //The distance
 
     bool grounded;
@@ -44,7 +45,7 @@ public class playerController : MonoBehaviour {
     {
         float horInput = Input.GetAxisRaw("Horizontal");
         float vertInput = Input.GetAxisRaw("Vertical");
-
+        Debug.Log(grounded);
 
         preventSliding();
 
@@ -61,6 +62,10 @@ public class playerController : MonoBehaviour {
             playerRB.velocity = totalDir;
         }
 
+        if(Input.GetButtonDown("Jump"))
+        {
+            jump();
+        }
     }
 
 
@@ -124,12 +129,12 @@ public class playerController : MonoBehaviour {
     //Rays castes downward looking for a collider, if one is found, you are grounded, if not, grounded is false.
     void checkGround()
     {
-        float rayRange = 0.5f;
+        float rayRange = 0.9f;
         RaycastHit hitInfo = new RaycastHit();
-        Vector3 rayPos = new Vector3(transform.position.x, transform.position.y - playerCollider.height / 2, transform.position.z);
+        Vector3 rayPos = new Vector3(transform.position.x, (transform.position.y - playerCollider.height / 2) -1, transform.position.z);
 
         //If ray hits collider...
-        if (Physics.Raycast(new Ray(rayPos, Vector3.down), out hitInfo, rayRange))
+        if (Physics.Raycast(new Ray(rayPos, Vector3.up), out hitInfo, rayRange))
         {
             grounded = true;
         }
@@ -148,6 +153,15 @@ public class playerController : MonoBehaviour {
         else { return true; }
     }
 
+
+
+    void jump()
+    {
+        if(grounded == true)
+        {
+            playerRB.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
+        }
+    }
 
 
 }
