@@ -125,6 +125,44 @@ public class playerController : MonoBehaviour {
         playerRB.useGravity = true;
     }
 
+	
+	
+    void preventStickWalls()
+    {
+	Transform firstPos = transform.position;
+	
+	//Direction the player is tying to move via input controls
+	Vector3 moveDir = (transform.position + playerRB.velocity)
+	Vector3 nextPos = new Vector3 (transform.position) * playerRB.velocity * Time.deltaTime;
+	    
+	//If the players position has not changed in the direction they intend to travel
+	if(transform.position != nextPos)
+	{
+		Debug.Log("Stuck on wall");
+		/*
+		
+		//set hor velocity to 0 or .....
+		
+		@@@@@@@@@@
+		
+		//Adjust y velocity (gravity) to make the player fall, y overpowers total of hor velocity by amount of gravity.
+		
+		//New y velocity that adjusts gravity to overtake left/right velocity.
+		float newYVelo = new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).magnitude - Physics.gravity;
+		
+		
+		playerRB.velocity = new Vector3(playerRB.velocity.x, newYVelo, playerRB.velocity.z)
+		
+		*/
+	}
+	else{  Debug.Log("Free"); }
+	    
+    }
+	
+	
+	
+	
+	
 
     //Rays castes downward looking for a collider, if one is found, you are grounded, if not, grounded is false.
     void checkGround()
