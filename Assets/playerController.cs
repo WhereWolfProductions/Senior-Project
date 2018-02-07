@@ -8,6 +8,8 @@ public class playerController : MonoBehaviour {
     CapsuleCollider playerCollider;
     Transform cam;
 
+    Vector3 nextPos;
+
     public float moveSpeed;
     float jumpPower = 15;
     float slopeClossnes;     //The distance
@@ -20,6 +22,8 @@ public class playerController : MonoBehaviour {
         playerRB = GetComponent<Rigidbody>();
         slopeClossnes = 7;
         playerCollider = playerRB.gameObject.GetComponent<Collider>() as CapsuleCollider;
+        
+        Vector3 nextPos = (transform.position) + playerRB.velocity * Time.deltaTime;
     }
 	
 	// Update is called once per frame
@@ -34,10 +38,11 @@ public class playerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
-
         playerMove();
         stickToSlopes();
         checkGround();
+        preventStickWalls();
+        nextPos = (transform.position) + playerRB.velocity * Time.deltaTime;
     }
 
 
@@ -45,7 +50,6 @@ public class playerController : MonoBehaviour {
     {
         float horInput = Input.GetAxisRaw("Horizontal");
         float vertInput = Input.GetAxisRaw("Vertical");
-        Debug.Log(grounded);
 
         preventSliding();
 
@@ -92,7 +96,7 @@ public class playerController : MonoBehaviour {
     void stickToSlopes()
     {
         RaycastHit hitInfo = new RaycastHit();
-        Debug.Log(hitInfo.collider);
+
 
         Vector3 adjustedPos = new Vector3(transform.position.x, transform.position.y - playerCollider.height /2, transform.position.z);
         playerRB.useGravity = true;
@@ -129,38 +133,60 @@ public class playerController : MonoBehaviour {
 	
     void preventStickWalls()
     {
-	Transform firstPos = transform.position;
-	
-	//Direction the player is tying to move via input controls
-	Vector3 moveDir = (transform.position + playerRB.velocity)
-	Vector3 nextPos = new Vector3 (transform.position) * playerRB.velocity * Time.deltaTime;
-	    
-	//If the players position has not changed in the direction they intend to travel
-	if(transform.position != nextPos)
-	{
-		Debug.Log("Stuck on wall");
-		/*
+
+
+
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            Debug.Log(nextPos.normalized);
+            Debug.Log(transform.position.normalized + "current");
+        }
+
+
+	    //If the players position has not changed in the direction they intend to travel
+	    if(approxVectors(transform.position, nextPos, 0.05f) == false)
+	    {
+		    Debug.Log("Stuck on wall");
+		    /*
+		    
+		    //set hor velocity to 0 or .....
 		
-		//set hor velocity to 0 or .....
+		    @@@@@@@@@@
+		    
+		    //Adjust y velocity (gravity) to make the player fall, y overpowers total of hor velocity by amount of gravity.
+		    
+		    //New y velocity that adjusts gravity to overtake left/right velocity.
+		    float newYVelo = new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).magnitude - Physics.gravity;
+		    
+		    
+		    playerRB.velocity = new Vector3(playerRB.velocity.x, newYVelo, playerRB.velocity.z)
 		
-		@@@@@@@@@@
-		
-		//Adjust y velocity (gravity) to make the player fall, y overpowers total of hor velocity by amount of gravity.
-		
-		//New y velocity that adjusts gravity to overtake left/right velocity.
-		float newYVelo = new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).magnitude - Physics.gravity;
-		
-		
-		playerRB.velocity = new Vector3(playerRB.velocity.x, newYVelo, playerRB.velocity.z)
-		
-		*/
-	}
-	else{  Debug.Log("Free"); }
-	    
+		    */
+	    }
+	    else{  Debug.Log("Free"); }
+
+        
+
     }
 	
 	
-	
+    //Returns true if two vecotrs are approxmetly the same on x,y,z..
+	bool approxVectors(Vector3 vector1, Vector3 vector2, float epsilon)
+    {
+        if(Mathf.Abs(vector2.x - vector1.x) < epsilon)
+        {
+            if(Mathf.Abs(vector2.y - vector1.y) < epsilon)
+            {
+                if(Mathf.Abs(vector2.z - vector1.z) < epsilon)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
 	
 	
 
