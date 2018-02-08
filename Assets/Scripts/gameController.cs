@@ -38,8 +38,8 @@ public class gameController : MonoBehaviour {
     public void loadLevelScript(Monobehavior levelScript)
     {
 	//Data type   name          script
-	Monobehavior levelScript = new level1();
-	GameObject.AddComponent<levelScript>();
+	Monobehavior Level = new levelScript();
+	GameObject.AddComponent<Level>();
     }
 
 
