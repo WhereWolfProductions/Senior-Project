@@ -35,14 +35,11 @@ public class gameController : MonoBehaviour {
     }
 
 
-    //Begins the transition to level 1.
-    public void pressedStart()
+    public void loadLevelScript(Monobehavior levelScript)
     {
-
-        GameObject temp = Instantiate(Resources.Load("FadeScreen") as GameObject, Camera.main.transform);
-        ScriptableObject.CreateInstance<level1>();
-
-
+	//Data type   name          script
+	Monobehavior levelScript = new level1();
+	GameObject.AddComponent<levelScript>();
     }
 
 
