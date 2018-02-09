@@ -10,7 +10,7 @@ public class playerController : MonoBehaviour {
 
     Vector3 nextPos;
 
-    public float moveSpeed;
+    float moveSpeed;
     float jumpPower = 15;
     float slopeClossnes;     //The distance
 
@@ -19,6 +19,7 @@ public class playerController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
+        moveSpeed = 600;
         playerRB = GetComponent<Rigidbody>();
         slopeClossnes = 7;
         playerCollider = playerRB.gameObject.GetComponent<Collider>() as CapsuleCollider;
@@ -31,18 +32,17 @@ public class playerController : MonoBehaviour {
 
 
 
-
     }
 
-	
+
 
     private void FixedUpdate()
     {
         playerMove();
         stickToSlopes();
         checkGround();
-        preventStickWalls();
         nextPos = (transform.position) + playerRB.velocity * Time.deltaTime;
+
     }
 
 
@@ -53,6 +53,7 @@ public class playerController : MonoBehaviour {
 
         preventSliding();
 
+        
         if (horInput != 0 || vertInput != 0)
         {
             Vector3 vertDir = (transform.forward * vertInput);
@@ -66,10 +67,14 @@ public class playerController : MonoBehaviour {
             playerRB.velocity = totalDir;
         }
 
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             jump();
         }
+
+            
+
+        
     }
 
 
@@ -130,45 +135,7 @@ public class playerController : MonoBehaviour {
     }
 
 	
-	
-    void preventStickWalls()
-    {
 
-
-
-
-        if(Input.GetKeyDown(KeyCode.F))
-        {
-            Debug.Log(nextPos.normalized);
-            Debug.Log(transform.position.normalized + "current");
-        }
-
-
-	    //If the players position has not changed in the direction they intend to travel
-	    if(approxVectors(transform.position, nextPos, 0.05f) == false)
-	    {
-		    Debug.Log("Stuck on wall");
-		    /*
-		    
-		    //set hor velocity to 0 or .....
-		
-		    @@@@@@@@@@
-		    
-		    //Adjust y velocity (gravity) to make the player fall, y overpowers total of hor velocity by amount of gravity.
-		    
-		    //New y velocity that adjusts gravity to overtake left/right velocity.
-		    float newYVelo = new Vector3(playerRB.velocity.x, 0, playerRB.velocity.z).magnitude - Physics.gravity;
-		    
-		    
-		    playerRB.velocity = new Vector3(playerRB.velocity.x, newYVelo, playerRB.velocity.z)
-		
-		    */
-	    }
-	    else{  Debug.Log("Free"); }
-
-        
-
-    }
 	
 	
     //Returns true if two vecotrs are approxmetly the same on x,y,z..

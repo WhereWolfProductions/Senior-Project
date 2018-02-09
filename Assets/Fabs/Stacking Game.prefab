@@ -36,6 +36,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4887793055957730}
+  - component: {fileID: 114382192560671048}
   m_Layer: 0
   m_Name: Stacking Game
   m_TagString: Untagged
@@ -1288,6 +1289,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1179292123218732}
   m_Mesh: {fileID: 4300000, guid: 27f3ed4746bf5cf418a5cd9f31541336, type: 3}
+--- !u!114 &114382192560671048
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1006612851691122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8187ef39b653a8f4199381f97f7f1013, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &136043247333212520
 CapsuleCollider:
   m_ObjectHideFlags: 1

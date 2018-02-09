@@ -7,12 +7,12 @@ using UnityEngine;
 public class gameController : MonoBehaviour {
 
     public static gameController gameControllerManager;
-    
-    
+
+    Component currentLevel;
 
 
-	// Use this for initialization
-	void Awake () {
+    // Use this for initialization
+    void Awake () {
 
         if (!gameControllerManager)
         {
@@ -26,7 +26,7 @@ public class gameController : MonoBehaviour {
 
         Cursor.SetCursor(Resources.Load("Images/cursor") as Texture2D, Vector2.zero, CursorMode.Auto);
 
-
+        setLevel(typeof(trainingLevel));
     }
 
     // Update is called once per frame
@@ -35,24 +35,40 @@ public class gameController : MonoBehaviour {
     }
 
 
-    //Begins the transition to level 1.
-    public void pressedStart()
+    //Takes a level class and adds it to gameController, deleting the last level
+    //Prevents multiple levels being active at one time.
+
+    //Example of use: setLevel(typeof(level1));
+    void setLevel(System.Type levelClass)
     {
 
-        changeScene("Office Better");
-        Cursor.lockState = CursorLockMode.Locked;
-
-        //GameObject temp = Instantiate(Resources.Load("FadeScreen") as GameObject, Camera.main.transform);
-        //ScriptableObject.CreateInstance<level1>();
-
+        if (currentLevel != null)
+        {
+            Destroy(currentLevel);
+        }
+        else
+        {
+            currentLevel = gameObject.AddComponent(levelClass);
+        }
 
     }
 
 
-
-
-
-
+    void clearExtra()
+    {
+        MonoBehaviour[] scripts = gameObject.GetComponents<MonoBehaviour>();
+        if(scripts.Length >  2)
+        {
+            foreach(Component script in gameObject.GetComponents<MonoBehaviour>())
+            {
+                Debug.Log(script.GetType());
+                if (script.GetType() != gameObject.GetComponent<gameController>().GetType())
+                {
+                    Destroy(script);
+                }
+            }
+        }
+    }
 
 
 

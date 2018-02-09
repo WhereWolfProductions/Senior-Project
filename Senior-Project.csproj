@@ -135,7 +135,7 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\GraphicsUtils.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\MaterialFactory.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
-    <Compile Include="Assets\Resources\Level Scripts\level1.cs" />
+    <Compile Include="Assets\Resources\Level Scripts\trainingLevel.cs" />
     <Compile Include="Assets\Resources\fadeScript.cs" />
     <Compile Include="Assets\Scripts\PointerInputModule.cs" />
     <Compile Include="Assets\Scripts\VirtualMouseInputModule.cs" />
@@ -144,6 +144,7 @@
     <Compile Include="Assets\Scripts\effectPlayer.cs" />
     <Compile Include="Assets\Scripts\gameController.cs" />
     <Compile Include="Assets\Scripts\musicManager.cs" />
+    <Compile Include="Assets\Scripts\ringPuzzle.cs" />
     <Compile Include="Assets\Scripts\sliderInputConnection.cs" />
     <Compile Include="Assets\Scripts\tabletController.cs" />
     <Compile Include="Assets\ballAnimator.cs" />
