@@ -41,7 +41,6 @@ public class playerController : MonoBehaviour {
         playerMove();
         stickToSlopes();
         checkGround();
-        nextPos = (transform.position) + playerRB.velocity * Time.deltaTime;
 
     }
 

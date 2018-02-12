@@ -34,6 +34,7 @@ public class DoorControls : MonoBehaviour {
 
     private void OnMouseDown()
     {
+        Debug.Log("ji");
         if (inRange() == true)
         {
             clickedButton();
