@@ -45,6 +45,7 @@ public class musicManager : MonoBehaviour {
 
         loadSongs();
         StartCoroutine(checkTitle());
+        
     }
 	
 	// Update is called once per frame
@@ -126,7 +127,7 @@ public class musicManager : MonoBehaviour {
         float localVol = musicVol - (musicVol * .8f);
         float targetVolume = Mathf.Clamp(localVol, 0, musicVol);
 
-        float rate = (targetVolume * 3f) / 100;
+        float rate = (targetVolume * 11f) / 100;
 
         while (audioSource.volume < targetVolume)
         {
@@ -138,20 +139,17 @@ public class musicManager : MonoBehaviour {
     }
 
 
-    public void fadeMusicFromScriptObj(AudioSource target, float fadeTime)
-    {
-        StartCoroutine(fadeMusic(target, fadeTime));
-    }
+
 
 
     //totally fades out music, to 0.
-    IEnumerator fadeMusic(AudioSource target, float fadeTime)
+    public IEnumerator fadeMusic(AudioSource target, float fadeTime)
     {
         float diff = target.volume - 0;
         float changePerSec = diff / fadeTime;
         float rate = changePerSec / 100;
         float waitInterval = 1 / 100;
-
+        Debug.Log("test");
         while (target.volume > 0.01f)
         {
             target.volume = target.volume - rate;
@@ -159,6 +157,8 @@ public class musicManager : MonoBehaviour {
             yield return new WaitForSeconds(waitInterval);
         }
         target.volume = 0;
+
+        target.clip = null;
         yield return null;
     }
 

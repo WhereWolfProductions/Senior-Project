@@ -557,11 +557,11 @@ Prefab:
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 959589284}
+      objectReference: {fileID: 959589285}
     - target: {fileID: 114669247161304308, guid: 8d1e259bb90f58e48ac8b92a2a2646e9,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: pressedStart
+      value: startGame
       objectReference: {fileID: 0}
     - target: {fileID: 114669247161304308, guid: 8d1e259bb90f58e48ac8b92a2a2646e9,
         type: 2}
@@ -823,7 +823,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: edf725a30c52e0a4285943a7b67a1d86, type: 2}
+  - {fileID: 2100000, guid: 159da54fddf707a4c929d4fa1c980c6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1021,22 +1021,12 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &959589283 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1683476448577634, guid: 5c8e97e9f97e7414bac21f4e5482d6f0,
+--- !u!114 &959589285 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114117363832855374, guid: 5c8e97e9f97e7414bac21f4e5482d6f0,
     type: 2}
   m_PrefabInternal: {fileID: 643357750}
---- !u!114 &959589284
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 959589283}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b31895ba632a69a459e8e67f1501e215, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &971886038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2138,14 +2128,14 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.7647059, b: 0.41176468, a: 1}
+  m_Color: {r: 0.7065311, g: 0.78324485, b: 0.7941176, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
     m_Type: 2
-    m_Resolution: -1
+    m_Resolution: 3
     m_CustomResolution: -1
     m_Strength: 1
     m_Bias: 0.05
