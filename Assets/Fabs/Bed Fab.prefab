@@ -179,6 +179,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4646475840002078}
+  - component: {fileID: 64437035902881828}
   m_Layer: 0
   m_Name: Hatch
   m_TagString: Untagged
@@ -194,6 +195,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4756802330051798}
+  - component: {fileID: 136755820927773862}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -423,9 +425,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1681155752608964}
-  m_LocalRotation: {x: 1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -33.72633, y: -2.06, z: -10.918348}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: -0.0256, y: 0.02416, z: 0.005}
+  m_LocalScale: {x: 0.004, y: 0.0025999, z: 0.004}
   m_Children:
   - {fileID: 4130843642736768}
   - {fileID: 4642143579852284}
@@ -433,7 +435,7 @@ Transform:
   - {fileID: 4756802330051798}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 180, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -180, y: -90, z: 90}
 --- !u!4 &4894545394308980
 Transform:
   m_ObjectHideFlags: 1
@@ -569,7 +571,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 5ecb8ce1cab84a14f869f80749787571, type: 2}
+  - {fileID: 2100000, guid: 159da54fddf707a4c929d4fa1c980c6d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -655,6 +657,20 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1820893817539318}
   m_Mesh: {fileID: 4300006, guid: 2a7e317cfbab634478988c7a49048f3b, type: 3}
+--- !u!64 &64437035902881828
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1737191840173384}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!108 &108194195810387486
 Light:
   m_ObjectHideFlags: 1
@@ -763,6 +779,19 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!136 &136755820927773862
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1774666564415872}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.88830554
+  m_Height: 4.5155582
+  m_Direction: 2
+  m_Center: {x: 0.04797035, y: 0.19603139, z: 1.2959185}
 --- !u!198 &198707590921153394
 ParticleSystem:
   m_ObjectHideFlags: 1

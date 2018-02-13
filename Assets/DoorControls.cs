@@ -6,6 +6,9 @@ public class DoorControls : MonoBehaviour {
 		
 	public bool unlocked;  //The state the door is in
     public GameObject door;
+
+    Canvas lockedCanvas;
+    Canvas unlockedCanvas;
 	
 	Animator doorAnimController;
 	
@@ -19,8 +22,10 @@ public class DoorControls : MonoBehaviour {
 		{
 			unlocked = false;
 		}
-		
-		doorAnimController = door.GetComponent<Animator>();
+		if(door != null)
+        {
+            doorAnimController = door.GetComponent<Animator>();
+        }
 		playerPos = GameObject.FindWithTag("Player").transform;
         canvasReflectState();
 	}
@@ -28,19 +33,20 @@ public class DoorControls : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-
+        canvasReflectState();
     
 	}
 
     private void OnMouseDown()
     {
-        Debug.Log("ji");
         if (inRange() == true)
         {
             clickedButton();
             canvasReflectState();
         }
     }
+
+    
 
 
 
