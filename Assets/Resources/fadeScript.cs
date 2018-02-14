@@ -31,7 +31,7 @@ public class fadeScript : MonoBehaviour {
         canvas.GetComponent<Canvas>().planeDistance = 0.4f;
         canvasImage.color = new Color(0, 0, 0, 0);
 
-
+        Debug.Log("fade");
         while (canvasImage.color.a < 1)
         {
             Color fadedColor = new Color(canvasImage.color.r, canvasImage.color.g, canvasImage.color.b, canvasImage.color.a + fadeOutSpeed);

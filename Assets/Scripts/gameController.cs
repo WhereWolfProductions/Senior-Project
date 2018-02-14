@@ -33,12 +33,26 @@ public class gameController : MonoBehaviour {
     }
 
 
-    public void startGame()
+    IEnumerator startRoutine()
     {
         musicManager.musicManagerData.stopMusic();
         changeScene("Office Better");
+        yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "Office Better");
+        GameObject chair = GameObject.Find("Chair");
+        chair.GetComponent<chairController>().seated = true;
+
+        GameObject.FindWithTag("Player").transform.position = new Vector3(-21.572f, 3, 20);
+        GameObject.FindWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+
+        //GameObject fadeScreen = Instantiate(Resources.Load("FadeScreen"), GameObject.FindWithTag("Player").transform) as GameObject;
+        //StartCoroutine(fadeScreen.GetComponent<fadeScript>().fadeOut());
     }
 
+
+    public void startGame()
+    {
+        StartCoroutine(startRoutine());
+    }
 
 
 

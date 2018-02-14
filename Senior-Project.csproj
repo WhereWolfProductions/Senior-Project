@@ -149,6 +149,7 @@
     <Compile Include="Assets\Scripts\sliderInputConnection.cs" />
     <Compile Include="Assets\Scripts\tabletController.cs" />
     <Compile Include="Assets\ballAnimator.cs" />
+    <Compile Include="Assets\chairController.cs" />
     <Compile Include="Assets\computerController.cs" />
     <Compile Include="Assets\logInButton.cs" />
     <Compile Include="Assets\playerController.cs" />
