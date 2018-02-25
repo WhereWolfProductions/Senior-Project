@@ -18,6 +18,8 @@ public class ringPuzzle : MonoBehaviour {
 
     public Material defaultMat;
 
+    public bool done;
+
 	// Use this for initialization
 	void Start () {
 
@@ -27,6 +29,8 @@ public class ringPuzzle : MonoBehaviour {
 
         Debug.Log(leftRings[0].transform.Find("Torus").GetComponent<Renderer>().material);
         defaultMat = new Material(leftRings[0].transform.Find("Torus").GetComponent<Renderer>().material);
+
+        done = false;
     }
 	
 	// Update is called once per frame
@@ -37,6 +41,11 @@ public class ringPuzzle : MonoBehaviour {
             currentRing.transform.Find("Torus").GetComponent<Renderer>().material.color = Color.green;
         }
 
+
+        if(rightRings[0].activeSelf == true && rightRings[1].activeSelf == true && rightRings[2].activeSelf == true)
+        {
+            done = true;
+        }
 
 	}
 

@@ -8,6 +8,7 @@ public class gameController : MonoBehaviour {
 
     public static gameController gameControllerManager;
 
+
     Component currentLevel;
 
 
@@ -35,7 +36,12 @@ public class gameController : MonoBehaviour {
 
     IEnumerator startRoutine()
     {
+        //Every thing up to fading out the camera after spawning into office
+        GameObject fadeScreen = Instantiate(Resources.Load("FadeScreen")) as GameObject;
+        StartCoroutine(fadeScreen.GetComponent<fadeScript>().fadeOut());
         musicManager.musicManagerData.stopMusic();
+
+        yield return new WaitUntil(() => fadeScreen.GetComponent<fadeScript>().getFade() > .9f);
         changeScene("Office Better");
         yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "Office Better");
         GameObject chair = GameObject.Find("Chair");
@@ -44,8 +50,39 @@ public class gameController : MonoBehaviour {
         GameObject.FindWithTag("Player").transform.position = new Vector3(-21.572f, 3, 20);
         GameObject.FindWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
 
-        //GameObject fadeScreen = Instantiate(Resources.Load("FadeScreen"), GameObject.FindWithTag("Player").transform) as GameObject;
-        //StartCoroutine(fadeScreen.GetComponent<fadeScript>().fadeOut());
+        GameObject newFadeScreen = Instantiate(Resources.Load("FadeScreen"), GameObject.FindWithTag("Player").transform) as GameObject;
+        //StartCoroutine(newFadeScreen.GetComponent<fadeScript>().fadeIn());
+
+        //Audio and transition to training level.
+        
+        AudioSource dialogueSource = effectPlayer.effectPlayerData.sayClip("Part 1", 100);
+        yield return new WaitUntil(() => dialogueSource.time > 13.5);
+        dialogueSource.Pause();
+        yield return new WaitForSeconds(1.2f);
+        dialogueSource.UnPause();
+        yield return new WaitUntil(() => dialogueSource.isPlaying == false);
+
+        //implant initation
+        
+        dialogueSource = effectPlayer.effectPlayerData.sayClip("Part 2", 100);
+        yield return new WaitUntil(() => dialogueSource.isPlaying == false);
+        GameObject calibrate = Instantiate(Resources.Load("Calibrating Canvas"), transform) as GameObject;
+        for(int i = 0; i < 4; i++)
+        {
+            AudioSource used = effectPlayer.effectPlayerData.playEffect("beeping", 30);
+            yield return new WaitUntil(() => used.isPlaying == false);
+        }
+
+        Destroy(calibrate);
+        
+        dialogueSource = effectPlayer.effectPlayerData.sayClip("Part 3", 100);
+        yield return new WaitUntil(() => dialogueSource.isPlaying == false);
+        StartCoroutine(GameObject.FindWithTag("Player").transform.Find("Main Camera").GetComponent<cameraScript>().diveEffect());
+        yield return new WaitUntil(() => GameObject.FindWithTag("Player").transform.Find("Main Camera").GetComponent<cameraScript>().diving == false);
+        SceneManager.LoadScene("Tutorial Level");
+        yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "Tutorial Level");
+        setLevel(typeof(trainingLevel));
+
     }
 
 

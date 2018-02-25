@@ -24,12 +24,11 @@ public class effectPlayer : MonoBehaviour {
 
     
 
-    void loadClips()
+    public void loadClips(string path)
     {
-        clips = Resources.LoadAll<AudioClip>("Ai Dialogue/Lvl 1/Intro Dialogue");
-        SFXList = Resources.LoadAll<AudioClip>("SFX");
-
+        clips = Resources.LoadAll<AudioClip>(path);
     }
+
 
 	// Use this for initialization
 	void Awake () {
@@ -51,7 +50,10 @@ public class effectPlayer : MonoBehaviour {
 
         effectVol = gameObject.GetComponent<AudioSource>().volume;
 
-        loadClips();
+        loadClips("Ai Dialogue/Lvl 1/Intro Dialogue");
+        SFXList = Resources.LoadAll<AudioClip>("SFX");
+
+        effectVol = 100;
 	}
 	
 	// Update is called once per frame
@@ -102,7 +104,7 @@ public class effectPlayer : MonoBehaviour {
             {
                 if(volume <= effectVol)
                 {
-                    used.volume = volume;
+                    used.volume = volume/100;
                 }
                 else { used.volume = effectVol; }
 

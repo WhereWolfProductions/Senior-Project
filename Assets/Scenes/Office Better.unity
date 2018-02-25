@@ -1497,6 +1497,67 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1154287923
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1154287925}
+  - component: {fileID: 1154287924}
+  m_Layer: 0
+  m_Name: Reflection Probe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!215 &1154287924
+ReflectionProbe:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1154287923}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Type: 0
+  m_Mode: 1
+  m_RefreshMode: 0
+  m_TimeSlicingMode: 0
+  m_Resolution: 256
+  m_UpdateFrequency: 0
+  m_BoxSize: {x: 7.6623125, y: 9.347534, z: 8.099103}
+  m_BoxOffset: {x: 0.6994176, y: 0.3262329, z: 1.0302444}
+  m_NearClip: 0.3
+  m_FarClip: 1000
+  m_ShadowDistance: 100
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IntensityMultiplier: 1
+  m_BlendDistance: 1
+  m_HDR: 1
+  m_BoxProjection: 0
+  m_RenderDynamicObjects: 0
+  m_UseOcclusionCulling: 1
+  m_Importance: 1
+  m_CustomBakedTexture: {fileID: 0}
+--- !u!4 &1154287925
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1154287923}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -20.53, y: 4.22, z: 19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1154817196
 Prefab:
   m_ObjectHideFlags: 0
@@ -2413,8 +2474,8 @@ ReflectionProbe:
   m_TimeSlicingMode: 0
   m_Resolution: 256
   m_UpdateFrequency: 0
-  m_BoxSize: {x: 16.5229, y: 9.619566, z: 40.04971}
-  m_BoxOffset: {x: -0.06679535, y: 0.2386496, z: 0.004518509}
+  m_BoxSize: {x: 16.094738, y: 9.619566, z: 40.04971}
+  m_BoxOffset: {x: 0.14728546, y: 0.23864937, z: 0.004518509}
   m_NearClip: 0.3
   m_FarClip: 1000
   m_ShadowDistance: 100
@@ -2948,7 +3009,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4331925115348350, guid: b97c28b83319ba94b93f722c2826064d, type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4331925115348350, guid: b97c28b83319ba94b93f722c2826064d, type: 2}
       propertyPath: m_LocalRotation.z
@@ -2956,7 +3017,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4331925115348350, guid: b97c28b83319ba94b93f722c2826064d, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 4331925115348350, guid: b97c28b83319ba94b93f722c2826064d, type: 2}
       propertyPath: m_RootOrder
@@ -2967,9 +3028,30 @@ Prefab:
       propertyPath: m_CullingMask.m_Bits
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 4331925115348350, guid: b97c28b83319ba94b93f722c2826064d, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b97c28b83319ba94b93f722c2826064d, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1884206287 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1310477792242176, guid: b97c28b83319ba94b93f722c2826064d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1884206286}
+--- !u!114 &1884206288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1884206287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 93a60595a80db2045a1d454314f190e1, type: 2}
 --- !u!1 &1896585188
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,6 +3190,10 @@ Prefab:
     - target: {fileID: 10877412, guid: 10b4213a276bd0f4d93c345fd1420858, type: 2}
       propertyPath: m_Range
       value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 10877412, guid: 10b4213a276bd0f4d93c345fd1420858, type: 2}
+      propertyPath: m_DrawHalo
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10b4213a276bd0f4d93c345fd1420858, type: 2}

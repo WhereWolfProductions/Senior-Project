@@ -149,7 +149,7 @@ public class musicManager : MonoBehaviour {
         float changePerSec = diff / fadeTime;
         float rate = changePerSec / 100;
         float waitInterval = 1 / 100;
-        Debug.Log("test");
+
         while (target.volume > 0.01f)
         {
             target.volume = target.volume - rate;

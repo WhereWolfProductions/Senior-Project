@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.PostProcessing;
 using UnityEngine;
 
 public class cameraScript : MonoBehaviour {
@@ -7,26 +8,35 @@ public class cameraScript : MonoBehaviour {
     float sensitivity = 50;
     float yRotate = 0;
 
+    PostProcessingBehaviour behaviour;
+    PostProcessingProfile newProfile;
+
     Vector3 lastGoodRot;   //The last good rotation before hitting a surface that may rotate the player
 
     public bool canMove = true;
+    public bool diving;
+    GameObject cam;
 
 	// Use this for initialization
 	void Start () {
 
-        Cursor.SetCursor(Resources.Load("Images/cursor") as Texture2D, Vector2.zero, CursorMode.Auto);
-        
+        cam = Camera.main.gameObject;
+
+        behaviour = cam.GetComponent<PostProcessingBehaviour>();
+
+        //Sets postProfile to a copy of the default profile.
+        newProfile = Instantiate(behaviour.profile);
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-
         if (canMove == true) { cameraMove(); }
         Cursor.lockState = CursorLockMode.Locked;
 
         transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, transform.parent.position.y + 1.639f, GameObject.FindWithTag("Player").transform.position.z);
-	}
+    }
 
 
 
@@ -41,17 +51,6 @@ public class cameraScript : MonoBehaviour {
             transform.localEulerAngles.z);
         newRotation.y = 0;
 
-        //If colliding with wall or other surface...
-
-        /* Plan
-         
-            every run of this method, save playerRot to lastGoodRotation if the player doesn't hit a wall.
-
-        if the player hits a wall, use last good rotation to do same calculations as below until they are no long colliding with a wall/surface.
-         this should stop physics based roation from being noticable by basing movement off of previous rotation instead of current roation
-         which could be changed by the phyiscs engine.
-
-        */
 
         //Rotates player on Y-axis according to mouse camera rotation
         Vector3 playerRot = new Vector3(0, transform.parent.localEulerAngles.y + (sensitivity * Time.deltaTime) * (horAim), 0);
@@ -68,7 +67,47 @@ public class cameraScript : MonoBehaviour {
 
     }
 
+    IEnumerator incFov(float start, float target, float time)
+    {
+
+        float diff = target - 0;
+        float changePerSec = diff / time;
+        float rate = changePerSec / 100;
+        float waitInterval = 1 / 100;
+
+        while (cam != null && cam.GetComponent<Camera>().fieldOfView < target)
+        {
+            cam.GetComponent<Camera>().fieldOfView = cam.GetComponent<Camera>().fieldOfView + rate;
+            yield return new WaitForSeconds(waitInterval);
+
+        }
+
+    }
+
+    
+    //Changes the profile copy to make weird effects when diving, also makes sound and fov change
+    public IEnumerator diveEffect()
+    {
+        diving = true;
+        StartCoroutine(incFov(90, 175, 9));
+        AudioSource warp = effectPlayer.effectPlayerData.playEffect("warp", 70);
 
 
+        while(warp.isPlaying == true)
+        {
+            ChromaticAberrationModel.Settings newchrome = newProfile.chromaticAberration.settings;
+            float chromeValue = -0.2f * (Mathf.Cos(Time.time * 20) * 10) + 3f;
+            newchrome.intensity = chromeValue;
 
+            newProfile.chromaticAberration.enabled = true;
+            newProfile.chromaticAberration.settings = newchrome;
+            cam.GetComponent<PostProcessingBehaviour>().profile = newProfile;
+            Debug.Log(cam.GetComponent<PostProcessingBehaviour>().profile.chromaticAberration.settings.intensity);
+            yield return new WaitForSeconds(1/1000);
+        }
+
+        diving = false;
+    }
+
+    
 }
