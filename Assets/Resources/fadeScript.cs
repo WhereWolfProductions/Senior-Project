@@ -39,13 +39,12 @@ public class fadeScript : MonoBehaviour {
         canvas.GetComponent<Canvas>().planeDistance = 0.4f;
         fadeImage.color = new Color(0, 0, 0, 0);
 
-
-        while (fadeImage != null && fadeImage.color.a < 1)
+        //goes from 0 to 255
+        while (fadeImage != null && fadeImage.color.a < 0.8f)
         {
             Color fadedColor = new Color(fadeImage.color.r, fadeImage.color.g, fadeImage.color.b, fadeImage.color.a + fadeOutSpeed);
             fadeImage.color = fadedColor;
             yield return new WaitForSeconds(0.015f);
-
         }
 
         if(fadeImage != null)

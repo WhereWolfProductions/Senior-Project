@@ -45,6 +45,7 @@ public class cameraScript : MonoBehaviour {
     //Camera Movement
     void cameraMove()
     {
+
         float horAim = Input.GetAxis("Mouse X");
 
         Vector3 newRotation = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + (sensitivity * Time.deltaTime) * (horAim),
@@ -102,7 +103,6 @@ public class cameraScript : MonoBehaviour {
             newProfile.chromaticAberration.enabled = true;
             newProfile.chromaticAberration.settings = newchrome;
             cam.GetComponent<PostProcessingBehaviour>().profile = newProfile;
-            Debug.Log(cam.GetComponent<PostProcessingBehaviour>().profile.chromaticAberration.settings.intensity);
             yield return new WaitForSeconds(1/1000);
         }
 

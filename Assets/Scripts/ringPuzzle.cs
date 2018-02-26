@@ -27,7 +27,7 @@ public class ringPuzzle : MonoBehaviour {
         fillVectors();
 
 
-        Debug.Log(leftRings[0].transform.Find("Torus").GetComponent<Renderer>().material);
+
         defaultMat = new Material(leftRings[0].transform.Find("Torus").GetComponent<Renderer>().material);
 
         done = false;
@@ -94,7 +94,6 @@ public class ringPuzzle : MonoBehaviour {
     public void moveRing(GameObject pole)
     {
         GameObject newRing = findSameRing(pole);
-        Debug.Log(currentRing);
 
         if (preventSamePole(pole) == true)
         {
@@ -249,7 +248,6 @@ public class ringPuzzle : MonoBehaviour {
             {
                 if (middleRings[i].activeSelf == true)
                 {
-                    Debug.Log(middleRings[i]);
                     return middleRings[i];
                 }
             }

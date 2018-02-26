@@ -38,6 +38,7 @@ public class playerController : MonoBehaviour {
 
     private void FixedUpdate()
     {
+        checkGround();
         playerMove();
         stickToSlopes();
         checkGround();

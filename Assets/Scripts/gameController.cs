@@ -41,7 +41,7 @@ public class gameController : MonoBehaviour {
         StartCoroutine(fadeScreen.GetComponent<fadeScript>().fadeOut());
         musicManager.musicManagerData.stopMusic();
 
-        yield return new WaitUntil(() => fadeScreen.GetComponent<fadeScript>().getFade() > .9f);
+        yield return new WaitUntil(() => fadeScreen.GetComponent<fadeScript>().getFade() > 0.9f);
         changeScene("Office Better");
         yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "Office Better");
         GameObject chair = GameObject.Find("Chair");
@@ -51,7 +51,7 @@ public class gameController : MonoBehaviour {
         GameObject.FindWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
 
         GameObject newFadeScreen = Instantiate(Resources.Load("FadeScreen"), GameObject.FindWithTag("Player").transform) as GameObject;
-        //StartCoroutine(newFadeScreen.GetComponent<fadeScript>().fadeIn());
+        StartCoroutine(newFadeScreen.GetComponent<fadeScript>().fadeIn());
 
         //Audio and transition to training level.
         
@@ -98,12 +98,14 @@ public class gameController : MonoBehaviour {
     //Prevents multiple levels being active at one time.
 
     //Example of use: setLevel(typeof(level1));
-    void setLevel(System.Type levelClass)
+    public void setLevel(System.Type levelClass)
     {
 
+        //If current level is being used, removes level and resets it to new one
         if (currentLevel != null)
         {
             Destroy(currentLevel);
+            currentLevel = gameObject.AddComponent(levelClass);
         }
         else
         {

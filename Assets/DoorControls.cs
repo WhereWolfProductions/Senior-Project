@@ -101,7 +101,7 @@ public class DoorControls : MonoBehaviour {
     //prevents player from pressing buttons from an infinate distance
     bool inRange()
     {
-        Debug.Log(Vector3.Distance(transform.position, playerPos.position));
+
         if (Vector3.Distance(transform.position, playerPos.position) > 3)
         {
             return false;

@@ -856,6 +856,61 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1001 &592885787
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1539518817}
+    m_Modifications:
+    - target: {fileID: 4050491869974894, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050491869974894, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050491869974894, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050491869974894, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050491869974894, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050491869974894, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050491869974894, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050491869974894, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1763609791784674, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_Name
+      value: Door Button (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4050491869974894, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114625915619389716, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3,
+        type: 2}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 470653685}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f2fcc5c9ef78fba4e8a79052ff7d84d3, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &596663023
 Prefab:
   m_ObjectHideFlags: 0
