@@ -65,6 +65,7 @@ public class fadeScript : MonoBehaviour {
 
         while (canvasImage != null && canvasImage.color.a > 0)
         {
+
             Color fadedColor = new Color(canvasImage.color.r, canvasImage.color.g, canvasImage.color.b, canvasImage.color.a - fadeInSpeed);
             canvasImage.color = fadedColor;
             yield return new WaitForSeconds(0.015f);

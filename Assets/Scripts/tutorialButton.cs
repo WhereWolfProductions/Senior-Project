@@ -22,10 +22,10 @@ public class tutorialButton : MonoBehaviour {
 
     private void OnMouseDown()
     {
-        player.transform.Find("uiText").gameObject.SetActive(false);
+        player.transform.Find("PlayerUI").gameObject.SetActive(false);
         player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-        player.transform.Find("FadeScreen").GetComponent<fadeScript>().fadeOut();
-        StartCoroutine(waitForFade(player.transform.Find("FadeScreen").GetComponent<fadeScript>()));
+        player.transform.Find("FadeScreen(Clone)").GetComponent<fadeScript>().fadeOut();
+        StartCoroutine(waitForFade(player.transform.Find("FadeScreen(Clone)").GetComponent<fadeScript>()));
 
     }
 

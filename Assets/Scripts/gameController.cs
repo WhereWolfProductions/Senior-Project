@@ -44,6 +44,7 @@ public class gameController : MonoBehaviour {
         yield return new WaitUntil(() => fadeScreen.GetComponent<fadeScript>().getFade() > 0.9f);
         changeScene("Office Better");
         yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "Office Better");
+        GameObject.FindWithTag("Player").GetComponent<playerController>().UI.SetActive(false);
         GameObject chair = GameObject.Find("Chair");
         chair.GetComponent<chairController>().seated = true;
 
@@ -60,6 +61,8 @@ public class gameController : MonoBehaviour {
         dialogueSource.Pause();
         yield return new WaitForSeconds(1.2f);
         dialogueSource.UnPause();
+        StartCoroutine(GameObject.FindWithTag("Player").GetComponent<playerController>().UI.GetComponent<playerUI>().setActive());
+        GameObject.FindWithTag("UI").GetComponent<playerUI>().setAssignment("Recalibrate neural implant.");
         yield return new WaitUntil(() => dialogueSource.isPlaying == false);
 
         //implant initation

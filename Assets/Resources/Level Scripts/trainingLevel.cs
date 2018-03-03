@@ -7,15 +7,20 @@ using UnityEngine;
 public class trainingLevel : MonoBehaviour {
 
     GameObject player;
-    textController textDriver;
+    playerUI UI;
+
+    Vector3 startPos;
 
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
-        textDriver = player.transform.Find("uiText").GetComponent<textController>();
+        startPos = player.transform.position;
+        StartCoroutine(player.GetComponent<playerController>().UI.GetComponent<playerUI>().setActive());
+        UI = player.GetComponent<playerController>().UI.GetComponent<playerUI>();
 
-        player.transform.Find("FadeScreen").GetComponent<fadeScript>().setFade(255);
-        StartCoroutine(player.transform.Find("FadeScreen").GetComponent<fadeScript>().fadeIn());
+        GameObject fadeScreen = Instantiate(Resources.Load("FadeScreen"), player.transform) as GameObject;
+        fadeScreen.GetComponent<fadeScript>().setFade(255);
+        StartCoroutine(fadeScreen.GetComponent<fadeScript>().fadeIn());
 
         StartCoroutine(levelMain());
         effectPlayer.effectPlayerData.loadClips("Ai Dialogue/Lvl 1/Training Level");
@@ -23,6 +28,13 @@ public class trainingLevel : MonoBehaviour {
 
     }
 
+    private void Update()
+    {
+        if(player.transform.position.y < -5)
+        {
+            player.transform.position = startPos;
+        }
+    }
 
     //main function controls sequence of function calls
     IEnumerator levelMain()
@@ -43,14 +55,14 @@ public class trainingLevel : MonoBehaviour {
     //What directions are given during the first long part of the map.
     void firstLong()
     {
-        textDriver.setText("Use W to move forward, A to move left, S to move back, and D to move right.");
+        UI.setAssignment("Use W to move forward, A to move left, S to move back, and D to move right." + "\n\n" + "- Move to the marker.");
         effectPlayer.effectPlayerData.sayClip("long", 100);
     }
 
 
     void turnSection()
     {
-        textDriver.setText("Press Space to jump over the gap.");
+        UI.setAssignment("Press Space to jump over the gap.");
         effectPlayer.effectPlayerData.sayClip("Turn", 100);
     }
   
@@ -58,13 +70,13 @@ public class trainingLevel : MonoBehaviour {
     void puzzle()
     {
         effectPlayer.effectPlayerData.sayClip("puzzle", 100);
-        textDriver.setText("Left click to interact with the world. Move the rings from the left most pole to the right most. A larger ring cannot go ontop of a smaller ring.");
+        UI.setAssignment("Left click to interact with the world. Move the rings from the left most pole to the right most. A larger ring cannot go ontop of a smaller ring.");
     }
 
     void jumpyBit()
     {
         effectPlayer.effectPlayerData.sayClip("jumpy", 100);
-        textDriver.setText("Get up to the green button.");
+        UI.setAssignment("Get up to the green button.");
     }
 
 

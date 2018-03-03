@@ -155,6 +155,7 @@
     <Compile Include="Assets\computerController.cs" />
     <Compile Include="Assets\logInButton.cs" />
     <Compile Include="Assets\playerController.cs" />
+    <Compile Include="Assets\playerUI.cs" />
     <Compile Include="Assets\textController.cs" />
   </ItemGroup>
   <ItemGroup>

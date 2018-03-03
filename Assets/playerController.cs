@@ -8,10 +8,12 @@ public class playerController : MonoBehaviour {
     CapsuleCollider playerCollider;
     Transform cam;
 
+    public GameObject UI;
+
     Vector3 nextPos;
 
     float moveSpeed;
-    float jumpPower = 15;
+    float jumpPower = 40;
     float slopeClossnes;     //The distance
 
     bool grounded;
@@ -25,12 +27,18 @@ public class playerController : MonoBehaviour {
         playerCollider = playerRB.gameObject.GetComponent<Collider>() as CapsuleCollider;
         
         Vector3 nextPos = (transform.position) + playerRB.velocity * Time.deltaTime;
+
+        UI = transform.Find("PlayerUI").gameObject;
+        UI.SetActive(true);
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-
+        if (Input.GetButtonDown("Jump"))
+        {
+            jump();
+        }
 
     }
 
@@ -67,10 +75,6 @@ public class playerController : MonoBehaviour {
             playerRB.velocity = totalDir;
         }
 
-        if (Input.GetButtonDown("Jump"))
-        {
-            jump();
-        }
 
             
 
