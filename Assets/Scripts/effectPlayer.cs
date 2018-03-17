@@ -13,7 +13,7 @@ public class effectPlayer : MonoBehaviour {
 
 
 
-    AudioClip[] clips;
+    List<AudioClip> clips = new List<AudioClip>();
     AudioClip[] SFXList;
 
     AudioSource[] sources;
@@ -26,7 +26,10 @@ public class effectPlayer : MonoBehaviour {
 
     public void loadClips(string path)
     {
-        clips = Resources.LoadAll<AudioClip>(path);
+        foreach(AudioClip clip in Resources.LoadAll<AudioClip>(path))
+        {
+            clips.Add(clip);
+        }
     }
 
 
@@ -51,6 +54,7 @@ public class effectPlayer : MonoBehaviour {
         effectVol = gameObject.GetComponent<AudioSource>().volume;
 
         loadClips("Ai Dialogue/Lvl 1/Intro Dialogue");
+        loadClips("Ai Dialogue/first level");
         SFXList = Resources.LoadAll<AudioClip>("SFX");
 
         effectVol = 100;
@@ -59,6 +63,13 @@ public class effectPlayer : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        foreach(AudioSource audioSource in sources)
+        {
+            if(audioSource.isPlaying == false)
+            {
+                audioSource.clip = null;
+            }
+        }
 
 	}
 
@@ -100,13 +111,19 @@ public class effectPlayer : MonoBehaviour {
 
         foreach (AudioClip effect in SFXList)
         {
-            if (effect.name == effectName)
+            if (used != null && effect.name == effectName)
             {
-                if(volume <= effectVol)
+                if(used != null && volume <= effectVol)
                 {
                     used.volume = volume/100;
                 }
-                else { used.volume = effectVol; }
+                else {
+
+                    if (used != null)
+                    {
+                        used.volume = effectVol;
+                    }
+                }
 
                 used.clip = effect;
                 used.Play();
@@ -169,6 +186,22 @@ public class effectPlayer : MonoBehaviour {
             yield return new WaitForSeconds(waitInterval);
         }
         yield return null;
+    }
+
+
+    //checks if the same effect is being played
+    public bool preventRepeat(string clipName)
+    {
+        foreach(AudioSource audioSource in sources)
+        {
+            if(audioSource.clip != null && audioSource.clip.name == clipName)
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
+        return false;
     }
 
 }

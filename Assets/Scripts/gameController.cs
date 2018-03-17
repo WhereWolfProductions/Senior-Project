@@ -9,7 +9,7 @@ public class gameController : MonoBehaviour {
     public static gameController gameControllerManager;
 
 
-    Component currentLevel;
+    public Component currentLevel;
 
 
     // Use this for initialization
@@ -46,7 +46,7 @@ public class gameController : MonoBehaviour {
         yield return new WaitUntil(() => SceneManager.GetActiveScene().name == "Office Better");
         GameObject.FindWithTag("Player").GetComponent<playerController>().UI.SetActive(false);
         GameObject chair = GameObject.Find("Chair");
-        chair.GetComponent<chairController>().seated = true;
+        GameObject.FindWithTag("Player").GetComponent<playerController>().seated = true;
 
         GameObject.FindWithTag("Player").transform.position = new Vector3(-21.572f, 3, 20);
         GameObject.FindWithTag("Player").GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;

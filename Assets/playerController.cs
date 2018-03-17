@@ -17,6 +17,7 @@ public class playerController : MonoBehaviour {
     float slopeClossnes;     //The distance
 
     bool grounded;
+    public bool seated;
 
 	// Use this for initialization
 	void Start () {
@@ -30,6 +31,8 @@ public class playerController : MonoBehaviour {
 
         UI = transform.Find("PlayerUI").gameObject;
         UI.SetActive(true);
+
+        //Constantly checks if needs to make step sound
     }
 	
 	// Update is called once per frame
@@ -39,6 +42,14 @@ public class playerController : MonoBehaviour {
         {
             jump();
         }
+        Cursor.lockState = CursorLockMode.Locked;
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            gameController.gameControllerManager.setLevel(typeof(level1));
+        }
+
+
 
     }
 
@@ -73,6 +84,15 @@ public class playerController : MonoBehaviour {
             totalDir.y = playerRB.velocity.y;
 
             playerRB.velocity = totalDir;
+
+            if(grounded == true && playerRB.velocity.magnitude > 0)
+            {
+                if(effectPlayer.effectPlayerData.preventRepeat("step") == false)
+                {
+                    effectPlayer.effectPlayerData.playEffect("step", 50);
+                }
+                
+            }
         }
 
 
@@ -164,12 +184,12 @@ public class playerController : MonoBehaviour {
     //Rays castes downward looking for a collider, if one is found, you are grounded, if not, grounded is false.
     void checkGround()
     {
-        float rayRange = 0.9f;
+        float rayRange = 1.5f;
         RaycastHit hitInfo = new RaycastHit();
-        Vector3 rayPos = new Vector3(transform.position.x, (transform.position.y - playerCollider.height / 2) -1, transform.position.z);
+        Vector3 rayPos = new Vector3(transform.position.x, (transform.position.y - playerCollider.height / 2) + 1, transform.position.z);
 
         //If ray hits collider...
-        if (Physics.Raycast(new Ray(rayPos, Vector3.up), out hitInfo, rayRange))
+        if (Physics.Raycast(new Ray(rayPos, Vector3.down), out hitInfo, rayRange))
         {
             grounded = true;
         }
@@ -197,6 +217,8 @@ public class playerController : MonoBehaviour {
             playerRB.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
         }
     }
+
+
 
 
 }

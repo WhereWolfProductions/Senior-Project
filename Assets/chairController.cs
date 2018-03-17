@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class chairController : MonoBehaviour {
 
-    public bool seated;
+    GameObject player;
+
+    bool seated;
 
     MeshCollider chairCollider;
     BoxCollider footCollider;
@@ -15,11 +17,15 @@ public class chairController : MonoBehaviour {
         chairCollider = GetComponent<MeshCollider>();
         footCollider = GetComponent<BoxCollider>();
 
-	}
+        player = GameObject.FindWithTag("Player");
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		
+
+        player.GetComponent<playerController>().seated = seated;
+
         if(seated == true)
         {
             chairCollider.enabled = false;
@@ -29,7 +35,21 @@ public class chairController : MonoBehaviour {
         {
             chairCollider.enabled = true;
             footCollider.enabled = true;
+            player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationY;
         }
 
 	}
+
+    private void OnMouseDown()
+    {
+        seated = true;
+        player.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition;
+        player.transform.position = new Vector3 (transform.position.x, transform.position.y + 3, transform.position.z);
+        player.GetComponent<playerController>().seated = true;
+    }
+
+
+    
+
 }

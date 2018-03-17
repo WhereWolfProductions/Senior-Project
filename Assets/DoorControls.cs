@@ -43,6 +43,10 @@ public class DoorControls : MonoBehaviour {
         {
             clickedButton();
             canvasReflectState();
+            if (effectPlayer.effectPlayerData.preventRepeat("door") == false)
+            {
+                effectPlayer.effectPlayerData.playEffect("door", 30);
+            }
         }
     }
 

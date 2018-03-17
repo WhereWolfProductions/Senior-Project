@@ -58,6 +58,7 @@ public class playerUI : MonoBehaviour {
             assignments = transform.Find("Left Corner").Find("Assignments").Find("Text").GetComponent<Text>();
         }
         assignments.text = "\n" + "- " + newAssignment;
+        effectPlayer.effectPlayerData.playEffect("mission beep", 50);
     }
 
     

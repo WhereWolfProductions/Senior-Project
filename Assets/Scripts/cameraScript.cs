@@ -27,6 +27,7 @@ public class cameraScript : MonoBehaviour {
         //Sets postProfile to a copy of the default profile.
         newProfile = Instantiate(behaviour.profile);
 
+        Cursor.lockState = CursorLockMode.Locked;
 	}
 	
 	// Update is called once per frame
@@ -36,6 +37,12 @@ public class cameraScript : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
 
         transform.position = new Vector3(GameObject.FindWithTag("Player").transform.position.x, transform.parent.position.y + 1.639f, GameObject.FindWithTag("Player").transform.position.z);
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
     }
 
 
@@ -109,5 +116,22 @@ public class cameraScript : MonoBehaviour {
         diving = false;
     }
 
-    
+    public IEnumerator glitch()
+    {
+
+        for (int i = 0; i < 20; i++)
+        {
+            ChromaticAberrationModel.Settings newchrome = newProfile.chromaticAberration.settings;
+            newProfile.chromaticAberration.enabled = true;
+
+            float chromeValue = -0.2f * (Mathf.Cos(Time.time * 20) * 10) + 3f;
+            newchrome.intensity = chromeValue;
+            newProfile.chromaticAberration.settings = newchrome;
+            cam.GetComponent<PostProcessingBehaviour>().profile = newProfile;
+            yield return new WaitForSeconds(1 / 1000);
+
+        }
+
+        cam.GetComponent<PostProcessingBehaviour>().profile = Resources.Load("Post Processing") as PostProcessingProfile;
+    }
 }
