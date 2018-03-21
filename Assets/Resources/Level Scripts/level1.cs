@@ -3,10 +3,35 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 
-public class level1 : MonoBehaviour {
+
+public class level1 : Monobehavior {
 
     //This level occures after the training level is done.
 
+
+	// Use this for initialization
+	private void Awake () {
+        
+	mainCamera = Camera.main.exe;
+	sceneChange();
+		
+    	}
+	
+	
+	//Controls the moving between scens and prevneting player from moving during the fading of vision.
+	Ienumerator sceneChange()
+	{
+		GameObject fadeScreen = Resources.Load("FadeScreen") as GameObject;
+		fadeScreen.fadeOut();
+		yield return new WaitUntil(() => fadeScreen.getFade() < 0.01f);
+		SceneManager.LoadScene("Training Level");
+		RigidBody playerRB = GameObject.FindWithTag("Player").GetComponent<RigidBody>();
+		playerRB.constraints = RigidBodyConstraints.freezePosition;
+		fadeScreen.fadeIn();
+		yield return new WaitUntil(() => fadeScreen.getFade() < 0.01f);
+		playerRB.contraints = RigidBodyConstraints.None;
+		playerRB.contraints = RigidBodyConstraints.freezeRotation;
+	}
 
     GameObject player;
 
@@ -14,6 +39,7 @@ public class level1 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
 
         StartCoroutine(checkRealStart());
         dataFound = 0;
@@ -84,4 +110,5 @@ public class level1 : MonoBehaviour {
 
         StartCoroutine(GameObject.FindWithTag("Player").transform.Find("Main Camera").GetComponent<cameraScript>().diveEffect());
     }
+
 }

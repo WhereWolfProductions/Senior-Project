@@ -92,6 +92,11 @@ public class gameController : MonoBehaviour {
     public void startGame()
     {
         StartCoroutine(startRoutine());
+    public void loadLevelScript(Monobehavior levelScript)
+    {
+	//Data type   name          script
+	Monobehavior Level = new levelScript();
+	GameObject.AddComponent<Level>();
     }
 
 
