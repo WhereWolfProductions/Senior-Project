@@ -84,7 +84,6 @@ public class sliderInputConnection : MonoBehaviour {
             case "Music Volume":
                 if(checkSlider() == true)
                 {
-                    Debug.Log(musicManager.musicManagerData.musicVol);
                     gameObject.GetComponent<Slider>().value = musicManager.musicManagerData.musicVol / 100;
                 }
                 else { gameObject.GetComponent<InputField>().text = (musicManager.musicManagerData.musicVol).ToString();}

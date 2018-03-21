@@ -13,7 +13,7 @@ public class effectPlayer : MonoBehaviour {
 
 
 
-    AudioClip[] clips;
+    List<AudioClip> clips = new List<AudioClip>();
     AudioClip[] SFXList;
 
     AudioSource[] sources;
@@ -24,12 +24,14 @@ public class effectPlayer : MonoBehaviour {
 
     
 
-    void loadClips()
+    public void loadClips(string path)
     {
-        clips = Resources.LoadAll<AudioClip>("Ai Dialogue/Lvl 1/Intro Dialogue");
-        SFXList = Resources.LoadAll<AudioClip>("SFX");
-
+        foreach(AudioClip clip in Resources.LoadAll<AudioClip>(path))
+        {
+            clips.Add(clip);
+        }
     }
+
 
 	// Use this for initialization
 	void Awake () {
@@ -51,12 +53,23 @@ public class effectPlayer : MonoBehaviour {
 
         effectVol = gameObject.GetComponent<AudioSource>().volume;
 
-        loadClips();
+        loadClips("Ai Dialogue/Lvl 1/Intro Dialogue");
+        loadClips("Ai Dialogue/first level");
+        SFXList = Resources.LoadAll<AudioClip>("SFX");
+
+        effectVol = 100;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
+        foreach(AudioSource audioSource in sources)
+        {
+            if(audioSource.isPlaying == false)
+            {
+                audioSource.clip = null;
+            }
+        }
 
 	}
 
@@ -98,13 +111,19 @@ public class effectPlayer : MonoBehaviour {
 
         foreach (AudioClip effect in SFXList)
         {
-            if (effect.name == effectName)
+            if (used != null && effect.name == effectName)
             {
-                if(volume <= effectVol)
+                if(used != null && volume <= effectVol)
                 {
-                    used.volume = volume;
+                    used.volume = volume/100;
                 }
-                else { used.volume = effectVol; }
+                else {
+
+                    if (used != null)
+                    {
+                        used.volume = effectVol;
+                    }
+                }
 
                 used.clip = effect;
                 used.Play();
@@ -167,6 +186,22 @@ public class effectPlayer : MonoBehaviour {
             yield return new WaitForSeconds(waitInterval);
         }
         yield return null;
+    }
+
+
+    //checks if the same effect is being played
+    public bool preventRepeat(string clipName)
+    {
+        foreach(AudioSource audioSource in sources)
+        {
+            if(audioSource.clip != null && audioSource.clip.name == clipName)
+            {
+                return true;
+            }
+            else { return false; }
+        }
+
+        return false;
     }
 
 }

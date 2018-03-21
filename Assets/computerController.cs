@@ -23,7 +23,7 @@ public class computerController : MonoBehaviour {
         clickable = false;
         spinCubeRoutine = StartCoroutine(spinCube());
         floatCubeRoutine = StartCoroutine(floatCube());
-        humSound = StartCoroutine(humEffect());
+        //humSound = StartCoroutine(humEffect());
         
 	}
 	
